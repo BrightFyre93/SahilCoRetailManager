@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNet.Identity;
+using System.Collections.Generic;
 using System.Web.Http;
-using Microsoft.AspNet.Identity;
 
 namespace SahilCoRetailManager.Controllers
 {
