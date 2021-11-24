@@ -9,7 +9,7 @@ namespace SRMDesktopUI.ViewModels
     {
         private string _userName;
         private string _password;
-        private IApiHelper _apiHelper;
+        private readonly IApiHelper _apiHelper;
 
         public LoginViewModel(IApiHelper apiHelper)
         {
@@ -38,6 +38,25 @@ namespace SRMDesktopUI.ViewModels
             }
         }
 
+        public bool IsErrorVisible
+        {
+            get => ErrorMessage?.Length > 0;
+        }
+
+        private string _errorMessage;
+
+        public string ErrorMessage
+        {
+            get => _errorMessage;
+            set
+            {
+                _errorMessage = value;
+                NotifyOfPropertyChange(() => ErrorMessage);
+                NotifyOfPropertyChange(() => IsErrorVisible);
+            }
+        }
+
+
         public bool CanLogIn
         {
             get
@@ -57,11 +76,12 @@ namespace SRMDesktopUI.ViewModels
         {
             try
             {
+                ErrorMessage = "";
                 var result = await _apiHelper.AuthenticateAsync(UserName, Password);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                Console.WriteLine(ex);
+                ErrorMessage = ex.Message;
             }
         }
     }
