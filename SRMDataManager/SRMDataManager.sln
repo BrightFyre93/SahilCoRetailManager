@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SRMDesktopUI", "SRMWPFUserI
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SRMDataManagerLibrary", "SRMDataManagerLibrary\SRMDataManagerLibrary.csproj", "{B497D870-B1A1-4E08-8A1A-040BF5E11342}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SRMDesktopUI.Library", "SRMDesktopUI.Library\SRMDesktopUI.Library.csproj", "{DA73578D-09C1-4604-A46F-F93036B934F1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{B497D870-B1A1-4E08-8A1A-040BF5E11342}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B497D870-B1A1-4E08-8A1A-040BF5E11342}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B497D870-B1A1-4E08-8A1A-040BF5E11342}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA73578D-09C1-4604-A46F-F93036B934F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA73578D-09C1-4604-A46F-F93036B934F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA73578D-09C1-4604-A46F-F93036B934F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA73578D-09C1-4604-A46F-F93036B934F1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

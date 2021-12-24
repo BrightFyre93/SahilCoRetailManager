@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using SRMDataManagerLibrary.DataAccess;
 using SRMDataManagerLibrary.Models;
-using System.Collections.Generic;
-using System.Web;
+using System.Linq;
 using System.Web.Http;
 
 namespace SahilCoRetailManager.Controllers
@@ -10,13 +9,14 @@ namespace SahilCoRetailManager.Controllers
     [Authorize]
     public class UserController : ApiController
     {
-        public List<UserModel> GetById()
+        [HttpGet]
+        public UserModel GetById()
         {
             string Id = RequestContext.Principal.Identity.GetUserId();
 
             UserData data = new UserData();
 
-            return data.GetUserByID(Id);
+            return data.GetUserByID(Id).First();
         }
     }
 }
