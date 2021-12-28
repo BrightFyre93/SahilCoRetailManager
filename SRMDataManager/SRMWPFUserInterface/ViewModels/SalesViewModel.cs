@@ -34,9 +34,9 @@ namespace SRMDesktopUI.ViewModels
             }
         }
 
-        private string _itemQuantity;
+        private int _itemQuantity;
 
-        public string ItemQuantity
+        public int ItemQuantity
         {
             get { return _itemQuantity; }
             set
@@ -98,7 +98,6 @@ namespace SRMDesktopUI.ViewModels
                 bool output = false;
 
                 // Make sure something is selected
-                // Make sure item quantity is greater than 0
 
                 return output;
             }
