@@ -12,7 +12,7 @@ namespace SRMDataManagerLibrary.Internal.DataAccess
         public string GetConnectionString(string name)
             => ConfigurationManager.ConnectionStrings[name].ConnectionString;
 
-        public List<T> LoadData<T,U>(string storedProcedure, U parameters, string connectionStringName)
+        public List<T> LoadData<T, U>(string storedProcedure, U parameters, string connectionStringName)
         {
             string connectionString = GetConnectionString(connectionStringName);
 

@@ -20,7 +20,7 @@ namespace SRMDesktopUI.Library.API
         }
 
         public HttpClient ApiClient
-        { 
+        {
             get
             {
                 return _apiClient;
@@ -70,7 +70,7 @@ namespace SRMDesktopUI.Library.API
             _apiClient.DefaultRequestHeaders.Add("Authorization", $"bearer {token}");
             using (HttpResponseMessage response = await _apiClient.GetAsync("/api/User"))
             {
-                if(response.IsSuccessStatusCode)
+                if (response.IsSuccessStatusCode)
                 {
                     var result = await response.Content.ReadAsAsync<LoggedInUserModel>();
                     _loggedInUser.Id = result.Id;

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SRMDesktopUI.Library.Models
+﻿namespace SRMDesktopUI.Library.Models
 {
     public class AuthenticatedUser
     {

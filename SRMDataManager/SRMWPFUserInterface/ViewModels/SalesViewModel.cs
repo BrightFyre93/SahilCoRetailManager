@@ -1,11 +1,7 @@
 ﻿using Caliburn.Micro;
 using SRMDesktopUI.Library.API;
 using SRMDesktopUI.Library.Models;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace SRMDesktopUI.ViewModels
@@ -37,7 +33,7 @@ namespace SRMDesktopUI.ViewModels
         {
             get { return _products; }
             set
-            { 
+            {
                 _products = value;
                 NotifyOfPropertyChange(() => Products);
             }
@@ -48,7 +44,7 @@ namespace SRMDesktopUI.ViewModels
         public BindingList<string> Cart
         {
             get { return _cart; }
-            set 
+            set
             {
                 _cart = value;
                 NotifyOfPropertyChange(() => Cart);

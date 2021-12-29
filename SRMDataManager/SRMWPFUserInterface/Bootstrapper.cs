@@ -27,7 +27,7 @@ namespace SRMDesktopUI
         protected override void Configure()
         {
             _container.Instance(_container)
-                .PerRequest<IProductEndPoint,ProductEndPoint>();
+                .PerRequest<IProductEndPoint, ProductEndPoint>();
 
             _container
                 .Singleton<IWindowManager, WindowManager>()
