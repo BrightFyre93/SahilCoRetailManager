@@ -1,4 +1,6 @@
 ﻿using Caliburn.Micro;
+using SRMDesktopUI.Library.API;
+using SRMDesktopUI.Library.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,9 +12,28 @@ namespace SRMDesktopUI.ViewModels
 {
     public class SalesViewModel : Screen
     {
-        private BindingList<string> _products;
+        private IProductEndPoint _productEndPoint;
 
-        public BindingList<string> Products
+        public SalesViewModel(IProductEndPoint productEndPoint)
+        {
+            _productEndPoint = productEndPoint;
+        }
+
+        protected override async void OnViewLoaded(object view)
+        {
+            base.OnViewLoaded(view);
+            await LoadProducts();
+        }
+
+        public async Task LoadProducts()
+        {
+            var products = await _productEndPoint.GetAll();
+            Products = new BindingList<ProductModel>(products);
+        }
+
+        private BindingList<ProductModel> _products;
+
+        public BindingList<ProductModel> Products
         {
             get { return _products; }
             set
