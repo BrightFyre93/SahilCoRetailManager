@@ -12,11 +12,13 @@ namespace SRMDesktopUI.ViewModels
     {
         private readonly IProductEndPoint _productEndPoint;
         private readonly IConfigHelper _configHelper;
+        private readonly ISaleEndPoint _saleEndPoint;
 
-        public SalesViewModel(IProductEndPoint productEndPoint, IConfigHelper configHelper)
+        public SalesViewModel(IProductEndPoint productEndPoint, IConfigHelper configHelper, ISaleEndPoint saleEndPoint)
         {
             _productEndPoint = productEndPoint;
             _configHelper = configHelper;
+            _saleEndPoint = saleEndPoint;
         }
 
         protected override async void OnViewLoaded(object view)
@@ -169,6 +171,7 @@ namespace SRMDesktopUI.ViewModels
             NotifyOfPropertyChange(() => Tax);
             NotifyOfPropertyChange(() => Total);
             NotifyOfPropertyChange(() => Cart);
+            NotifyOfPropertyChange(() => CanCheckOut);
         }
 
         public bool CanRemoveFromCart
@@ -189,6 +192,7 @@ namespace SRMDesktopUI.ViewModels
             NotifyOfPropertyChange(() => SubTotal);
             NotifyOfPropertyChange(() => Tax);
             NotifyOfPropertyChange(() => Total);
+            NotifyOfPropertyChange(() => CanCheckOut);
         }
 
         public bool CanCheckOut
@@ -197,15 +201,30 @@ namespace SRMDesktopUI.ViewModels
             {
                 bool output = false;
 
-                // Make sure something is in cart
+                if (Cart.Count > 0)
+                {
+                    output = true;
+                }
 
                 return output;
             }
         }
 
-        public void CheckOut()
+        public async Task CheckOut()
         {
+            SaleModel sale = new SaleModel();
+            foreach (var item in Cart)
+            {
+                var saleDetail = new SaleDetailModel()
+                {
+                    ProductId = item.Product.Id,
+                    Quantity = item.QuantityInCart
+                };
 
+                sale.SaleDetails.Add(saleDetail);
+            }
+
+            await _saleEndPoint.PostSale(sale);
         }
     }
 }

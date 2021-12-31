@@ -8,8 +8,8 @@ namespace SRMDesktopUI.ViewModels
 {
     public class LoginViewModel : Screen
     {
-        private string _userName;
-        private string _password;
+        private string _userName = "sahil@sahilco.in";
+        private string _password = "Solutions@123";
         private readonly IApiHelper _apiHelper;
         private readonly IEventAggregator _events;
 
