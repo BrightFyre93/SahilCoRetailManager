@@ -92,12 +92,7 @@ namespace SRMDesktopUI.ViewModels
 
         private decimal CalculateSubTotal()
         {
-            decimal subTotal = 0;
-
-            foreach (var item in _cart)
-            {
-                subTotal += (item.Product.RetailPrice * item.QuantityInCart);
-            }
+            decimal subTotal = _cart.Sum(x => x.Product.RetailPrice * x.QuantityInCart);
 
             return subTotal;
         }
