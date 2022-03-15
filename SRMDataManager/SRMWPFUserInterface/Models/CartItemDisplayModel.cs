@@ -2,14 +2,14 @@
 
 namespace SRMDesktopUI.Models
 {
-    public class CartItemDisplayModel :INotifyPropertyChanged
+    public class CartItemDisplayModel : INotifyPropertyChanged
     {
         public ProductDisplayModel Product { get; set; }
 
         private int _quantityInCart;
-        public int QuantityInCart 
+        public int QuantityInCart
         {
-            get { return _quantityInCart; } 
+            get { return _quantityInCart; }
             set
             {
                 _quantityInCart = value;

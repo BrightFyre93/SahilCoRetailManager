@@ -20,7 +20,7 @@ namespace SRMDataManagerLibrary.DataAccess
         {
             SqlDataAccess sql = new SqlDataAccess();
 
-            var output = sql.LoadData<ProductModel, dynamic>("dbo.[SPProduct_GetById]", new { Id = ProductId}, "SRMData").FirstOrDefault();
+            var output = sql.LoadData<ProductModel, dynamic>("dbo.[SPProduct_GetById]", new { Id = ProductId }, "SRMData").FirstOrDefault();
 
             return output;
         }

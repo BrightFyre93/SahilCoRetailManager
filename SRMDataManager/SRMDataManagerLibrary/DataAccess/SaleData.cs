@@ -48,7 +48,7 @@ namespace SRMDataManagerLibrary.DataAccess
 
             sql.SaveData("dbo.SPSale_Insert", sale, "SRMData");
 
-            sale.Id = sql.LoadData<int, dynamic>("[dbo].[SPSale_Lookup]", new { sale.CashierId, sale.SaleDate}, "SRMData").FirstOrDefault();
+            sale.Id = sql.LoadData<int, dynamic>("[dbo].[SPSale_Lookup]", new { sale.CashierId, sale.SaleDate }, "SRMData").FirstOrDefault();
 
             foreach (var item in details)
             {
