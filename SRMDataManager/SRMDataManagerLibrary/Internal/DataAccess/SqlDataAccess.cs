@@ -50,6 +50,8 @@ namespace SRMDataManagerLibrary.Internal.DataAccess
             _connection.Open();
 
             _transaction = _connection.BeginTransaction();
+
+            _isClosed = false;
         }
 
         public List<T> LoadDataInTransaction<T, U>(string storedProcedure, U parameters)
@@ -67,21 +69,38 @@ namespace SRMDataManagerLibrary.Internal.DataAccess
                 .Execute(storedProcedure, parameters, commandType: CommandType.StoredProcedure, transaction: _transaction);
         }
 
+        private bool _isClosed;
+
         public void CommitTransaction()
         {
             _transaction?.Commit();
             _connection?.Close();
+            _isClosed = true;
         }
 
         public void RollbackTransaction()
         {
             _transaction?.Rollback();
             _connection?.Close();
+            _isClosed = true;
         }
 
         public void Dispose()
         {
-            CommitTransaction();
+            if (!_isClosed)
+            {
+                try
+                {
+                    CommitTransaction();
+                }
+                catch
+                {
+                    //TODO - Log this issue
+                }
+            }
+
+            _transaction = null;
+            _connection = null;
         }
     }
 }
