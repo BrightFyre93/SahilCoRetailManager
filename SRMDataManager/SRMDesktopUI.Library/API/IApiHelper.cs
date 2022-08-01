@@ -10,6 +10,8 @@ namespace SRMDesktopUI.Library.API
 
         Task<AuthenticatedUser> AuthenticateAsync(string username, string password);
 
+        void LogOffUser();
+
         Task GetLoggedInUserInfo(string token);
     }
 }
