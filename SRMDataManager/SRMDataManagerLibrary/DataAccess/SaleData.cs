@@ -44,16 +44,28 @@ namespace SRMDataManagerLibrary.DataAccess
 
             sale.Total = sale.SubTotal + sale.Tax;
 
-            SqlDataAccess sql = new SqlDataAccess();
-
-            sql.SaveData("dbo.SPSale_Insert", sale, "SRMData");
-
-            sale.Id = sql.LoadData<int, dynamic>("[dbo].[SPSale_Lookup]", new { sale.CashierId, sale.SaleDate }, "SRMData").FirstOrDefault();
-
-            foreach (var item in details)
+            using (SqlDataAccess sql = new SqlDataAccess())
             {
-                item.SaleID = sale.Id;
-                sql.SaveData("dbo.SPSaleDetail_Insert", item, "SRMData");
+                try
+                {
+                    sql.StartTransaction("SRMData");
+                    sql.SaveDataInTransaction("dbo.SPSale_Insert", sale);
+
+                    sale.Id = sql.LoadDataInTransaction<int, dynamic>("[dbo].[SPSale_Lookup]", new { sale.CashierId, sale.SaleDate }).FirstOrDefault();
+
+                    foreach (var item in details)
+                    {
+                        item.SaleID = sale.Id;
+                        sql.SaveDataInTransaction("dbo.SPSaleDetail_Insert", item);
+                    }
+
+                    sql.CommitTransaction();
+                }
+                catch
+                {
+                    sql.RollbackTransaction();
+                    throw;
+                }
             }
         }
     }
